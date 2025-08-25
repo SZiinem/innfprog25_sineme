@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Oppgave 3</title>
 </head>
 <body>
 
-    <p id="gjennomsnittsalder"> </p>
+    <p id="gjennomsnitt"> </p>
     <script>
         let far = 37
         let mor = 32
         let datter = 7
         let sønn = 2
 
+        //løsningsforslag 1
         let gjennomsnitt = (far + mor + datter + sønn) / 4
 
-        document.getElementById("gjennomsnittsalder").innerHTML = gjennomsnitt
+        //løsningsforslag 2
+        let totalAge = far + mor + datter + sønn
+        let gjennomsnittsalder = totalAge / 4
+
+        document.getElementById("gjennomsnitt").innerHTML = gjennomsnitt
     </script>
 </body>
 </html>
