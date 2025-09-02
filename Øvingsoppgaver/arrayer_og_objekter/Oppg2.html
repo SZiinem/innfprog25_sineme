@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="setning"></p>
+    <script>
+        let dyr = ["Katt", "Hund", "Fisk", "Løve", "Giraff", "Fugl", "Nesehorn", "Mus", "Apekatt", "Koala"]
+
+        let animals = ["Cat", "Dog", "Fish", "Lion", "Giraffe", "Bird", "Rhinoceros", "Mouse", "Monkey", "Koala"]
+
+        let tekst = `${dyr[2]} er et dyr. Det heter ${animals[2]} på engelsk. ${dyr[8]} er også et dyr, som heter ${animals[8]} på engelsk.`
+
+        document.getElementById("setning").innerHTML = tekst
+    </script>
+</body>
+</html>
