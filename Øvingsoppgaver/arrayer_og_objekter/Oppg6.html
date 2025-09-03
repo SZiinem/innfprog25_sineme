@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> iOS games</h1>
+    <ul id="filter"></ul>
+    
+    <script>
+        const games = [
+            {
+                title: "Angry Birds",
+                platforms: ["iOS", "Android"]
+            },
+            {
+                title: "Nongram",
+                platforms: ["Android"]
+            },
+            {
+                title: "Plants vs Zombies",
+                platforms: ["iOS", "Android", "Windows", "MacOS"]
+            },
+            {
+                title: "Punball",
+                platforms: ["Windows", "Android"]
+            },
+            {
+                title: "Planet Zoo",
+                platforms: ["Windows", "MacOS"]
+            },
+            {
+                title: "Woordle",
+                platforms: ["iOS", "MacOS"]
+            }
+        ]
+        //bruker filter for å lage en array med spill som er tilgjengelig for iOS
+        const iOSspill = games.filter((game) => game.platforms.includes("iOS"))
+
+        //map'per resultatet i iOSspill til lista
+        document.getElementById("filter").innerHTML = iOSspill.map((game) => `<li> ${game.title}</li>`).join('')
+        //the .join('') is used to override .map()'s use of toString() to print commas:
+        //https://stackoverflow.com/questions/45812160/unexpected-comma-using-map
+    </script>
+</body>
+</html>
