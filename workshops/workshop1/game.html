@@ -45,17 +45,17 @@
                     <tr>
                         <td><img src="icons/array.svg" alt="" /></td>
                         <td>Arrayer</td>
-                        <td id="antallArrayer">1</span></td>
+                        <td id="antallArrayer">0</span></td>
                     </tr>
                     <tr>
                         <td><img src="icons/loop.svg" alt="" /></td>
                         <td>Løkker</td>
-                        <td id="antallLøkker">2</td>
+                        <td id="antallLøkker">0</td>
                     </tr>
                     <tr>
                         <td><img src="icons/function.svg" alt="" /></td>
                         <td>Funksjoner</td>
-                        <td id="antallFunksjoner">1</td>
+                        <td id="antallFunksjoner">0</td>
                     </tr>
                 </table>
             </div>
@@ -88,6 +88,15 @@
         if(gameConfig.player === "")
         {
             document.getElementById("playerName").innerHTML = "Waiting for player"
+            for(key in gameConfig)
+            {
+                key === playerName ? playerName : gameConfig[key] = 0
+            }
+
+            for(key in notebook)
+            {
+                notebook[key] = 0
+            }
         }
         else 
         {
@@ -116,7 +125,39 @@
         document.getElementById("antallFunksjoner").innerHTML = notebook.functions
 
         //(BONUS) TODO: function for all prints
+
+        function updateStaticUI()
+        {
+                let gameConfig = 
+            
+            {
+                player: "",
+                energy: 5,
+                points: 10,
+                duration: 138
+            }
+            
+            if(gameConfig.player === "")
+            {
+                document.getElementById("playerName").innerHTML = "Waiting for player"
+            }
+            else 
+            {
+                document.getElementById("playerName").innerHTML = gameConfig.player
+            }
+
+            document.getElementById("energy").innerHTML = gameConfig.energy
+            document.getElementById("points").innerHTML = gameConfig.points
+            document.getElementById("duration").innerHTML = gameConfig.duration
+            
+            //TODO: print notebook info to HTML
+            document.getElementById("antallVariabler").innerHTML = notebook.variables
+            document.getElementById("antallArrayer").innerHTML = notebook.arrays
+            document.getElementById("antallLøkker").innerHTML = notebook.loops
+            document.getElementById("antallFunksjoner").innerHTML = notebook.functions
+        }
         
+        updateStaticUI()
     </script>
 </body>
 </html>
