@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="name"></p>
+    <p id="mail"></p>
+    <p id="age"></p>
+
+    <script>
+        function personInfo(name = "Ikke oppgitt", birthyear = "Ikke oppgitt", mail = "Ikke oppgitt")
+        {
+            document.getElementById("name").innerHTML = name
+            document.getElementById("mail").innerHTML = mail
+
+            if(birthyear === "Ikke oppgitt")
+            {
+                document.getElementById("age").innerHTML = "Ikke oppgitt"
+            }
+            else
+            {
+                let year = parseInt(birthyear) //konverterer string til int
+                let age = new Date().getFullYear() - year
+                document.getElementById("age").innerHTML = age
+            }
+
+        }
+        personInfo("Sinem", 2001, "sineme@hiof.no")
+
+        //uten parametere (skriver ut: ikke oppgitt på alle)
+        // personInfo()
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppg2 - Funksjoner</title>
+</head>
+<body>
+    <p id="name"></p>
+    <p id="mail"></p>
+    <p id="age"></p>
+
+    <script>
+        function info(name, birthyear, email)
+        {
+            document.getElementById("name").innerHTML = name
+            document.getElementById("mail").innerHTML = email
+            
+            let age = new Date().getFullYear() - birthyear
+            document.getElementById("age").innerHTML = age
+        }
+
+        info("Sinem", 2001, "sineme@hiof.no")
+    </script>
+</body>
+</html>
