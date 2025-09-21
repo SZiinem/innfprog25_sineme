@@ -36,8 +36,7 @@
         </p>
     </footer>
     
-    <script>
-        //endret <scripttt> til <script>
+    <script> //ENDRET <scripttt> TIL <script>
 
         //Variabel with company name
         const company = "Programmeriet"
@@ -50,22 +49,19 @@
         ]
 
         //Secret keys to access url and images
-            //legger til en fnutt "" etter img
-        let images_folder = "img"
+        let images_folder = "img" //LEGGER TIL EN FNUTT " ETTER "IMG
         let secret_key = 0
-            //gir ak_key verdien 0
-        let ak_key = 0
+        let ak_key //GIR VARIABELEN ak_key VERDIEN 0
         
         //Turn on or off safeguard to allow system to run
-        const safeguard = true
+        const safeguard = true //ENDRET safeguard = false TIL true
         
         //Control of safeguard to create image folder name
         if(safeguard === true) {
             ak_key = secret_key + 1
         }
         const safe_images_folder = images_folder += ak_key
-        //endrer console.logg til console.log
-        console.log("Image folder: " + safe_images_folder)
+        console.log("Image folder: " + safe_images_folder) //ENDRET console.logg TIL console.log
 
         let HTML_employees = ""
 
@@ -79,7 +75,7 @@
                     <p>${e.position} | Kontor: ${e.office}</p>
                     <p>${e.email}</p>
                 </article>`})
-                //skrivefeil ved getElementById fikset (var liten b)
+                //ENDRET SKRIVEFEIL VED getElementbyId, her var "By" skrevet med liten "b", endret til stor B
                 document.getElementById("employee_list").innerHTML = HTML_employees
         }
 
