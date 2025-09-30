@@ -22,6 +22,35 @@
         //PROBLEM 1
         
         //AI-kode for å løse problem 1 her.
+    /**
+    * Funksjon for å generere og returnere en tilfeldig hexadesimal fargekode.
+    * @returns {string} En streng som representerer en hex-farge, f.eks. "#A1B2C3".
+    */
+    function generateRandomHexColor() {
+    // En streng med alle mulige tegn i en hex-kode.
+    const hexTegn = '0123456789ABCDEF';
+    
+    // Starten på fargekoden.
+    let fargeKode = '#';
+
+    // Løkken kjører 6 ganger for å hente 6 tilfeldige tegn.
+    for (let i = 0; i < 6; i++) {
+        // Velger et tilfeldig tegn fra hexTegn og legger det til i strengen.
+        fargeKode += hexTegn[Math.floor(Math.random() * hexTegn.length)];
+    }
+    
+    // Returnerer den ferdige fargekoden.
+    return fargeKode;
+    }
+
+    // Henter HTML-elementet der fargen skal vises.
+    const fargeElement = document.getElementById('random_color');
+
+    // Kaller på funksjonen for å generere en ny tilfeldig farge.
+    const tilfeldigFarge = generateRandomHexColor();
+
+    // Viser fargekoden i HTML-elementet.
+    fargeElement.textContent = tilfeldigFarge;
 
         //PROBLEM 2
         const programming_words = ["variabel","funksjon","array","objekt","loop","betingelse","klasse","rekursjon","algoritme","kompilator"]

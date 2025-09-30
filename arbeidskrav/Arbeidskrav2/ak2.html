@@ -25,8 +25,24 @@
         let random_color_code = "#"
         
         //Din kode for å løse problem 1 her.
-        //function lageFargekode()
-        {}
+        function lageFargekode()
+        {
+            const random1 = Math.floor(Math.random() * hexadecimal_characters_array.length)
+            const randomElement1 = hexadecimal_characters_array[random1]
+            const random2 = Math.floor(Math.random() * hexadecimal_characters_array.length)
+            const randomElement2 = hexadecimal_characters_array[random2]
+            const random3 = Math.floor(Math.random() * hexadecimal_characters_array.length)
+            const randomElement3 = hexadecimal_characters_array[random3]
+            const random4 = Math.floor(Math.random() * hexadecimal_characters_array.length)
+            const randomElement4 = hexadecimal_characters_array[random4]
+            const random5 = Math.floor(Math.random() * hexadecimal_characters_array.length)
+            const randomElement5 = hexadecimal_characters_array[random5]
+            const random6 = Math.floor(Math.random() * hexadecimal_characters_array.length)
+            const randomElement6 = hexadecimal_characters_array[random6]
+        
+            document.getElementById("random_color").innerHTML = `${random_color_code}${randomElement1}${randomElement2}${randomElement3}${randomElement4}${randomElement5}${randomElement6}`
+        }
+        lageFargekode()
 
         //PROBLEM 2
         const programming_words = ["variabel","funksjon","array","objekt","loop","betingelse","klasse","rekursjon","algoritme","kompilator"]
