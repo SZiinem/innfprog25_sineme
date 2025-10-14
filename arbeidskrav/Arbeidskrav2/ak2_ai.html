@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Med AI</title>
 </head>
 <body>
     <h1>Arbeidskrav 2</h1>
@@ -16,7 +16,7 @@
     <p>Finnes ordet "problemløsning" i Programmeringsord-arrayen? <span id="problemlosning_sjekk"></span></p>
     <h2>Problem 3</h2>
     <p>Gjennomsnittet av tallene i tall_array_en er <span id="avg_array_one"></span></p>
-    <p>Gjennomsnittet av tallene i tall_array_to er <span id="avg_array_one"></span></p>
+    <p>Gjennomsnittet av tallene i tall_array_to er <span id="avg_array_two"></span></p>
 
     <script>
         //PROBLEM 1
@@ -52,16 +52,63 @@
     // Viser fargekoden i HTML-elementet.
     fargeElement.textContent = tilfeldigFarge;
 
-        //PROBLEM 2
-        const programming_words = ["variabel","funksjon","array","objekt","loop","betingelse","klasse","rekursjon","algoritme","kompilator"]
 
-        //AI-kode for å løse problem 2 her.
+    //PROBLEM 2
+    const programming_words = ["variabel","funksjon","array","objekt","loop","betingelse","klasse","rekursjon","algoritme","kompilator"]
 
-        //PROBLEM 3
-        const tall_array_en = [9, 13, 5, 62, 11, 6, 28, 31, 17]
-        const tall_array_to = [23, 76, 88, 13, 56, 90, 42]
+    //AI-kode for å løse problem 2 her.
+    function finnOrd(ord) {
+  // Array-metoden .includes() returnerer true hvis elementet finnes, og false hvis ikke.
+        if (programming_words.includes(ord)) {
+        return "Ja";
+        } 
+        else {
+        return "Nei";
+        }
+    }
+const betingelseSpan = document.getElementById('betingelse_sjekk');
+const algoritmeSpan = document.getElementById('algoritme_sjekk');
+const problemlosningSpan = document.getElementById('problemlosning_sjekk');
 
-        //AI-kode for å løse problem 3 her.
-    </script>
+betingelseSpan.textContent = finnOrd("betingelse");       // Forventer "Ja"
+algoritmeSpan.textContent = finnOrd("algoritme");         // Forventer "Ja"
+problemlosningSpan.textContent = finnOrd("problemløsning"); // Forventer "Nei"
+
+
+//PROBLEM 3
+const tall_array_en = [9, 13, 5, 62, 11, 6, 28, 31, 17]
+const tall_array_to = [23, 76, 88, 13, 56, 90, 42]
+
+//AI-kode for å løse problem 3 her.
+function beregnGjennomsnitt(numbers) {
+  // Hvis arrayen er tom, returner 0 for å unngå deling på null.
+  if (numbers.length === 0) {
+    return 0;
+  }
+  
+  let sum = 0;
+  // Gå gjennom hvert tall i arrayen.
+  for (let i = 0; i < numbers.length; i++) {
+    // Legg til det nåværende tallet i summen.
+    sum += numbers[i];
+  }
+  
+  // Beregn gjennomsnittet ved å dele summen på antall tall.
+  const gjennomsnitt = sum / numbers.length;
+  
+  return gjennomsnitt;
+}
+
+// Hent HTML-elementene
+const avgSpanOne = document.getElementById('avg_array_one');
+const avgSpanTwo = document.getElementById('avg_array_two');
+
+// Kjør funksjonen for begge arrayene og vis resultatet
+let resultatEn = beregnGjennomsnitt(tall_array_en);
+let resultatTo = beregnGjennomsnitt(tall_array_to);
+
+avgSpanOne.textContent = resultatEn.toFixed(2); // Viser 20.22
+avgSpanTwo.textContent = resultatTo.toFixed(2); // Viser 55.43
+</script>
 </body>
 </html>
