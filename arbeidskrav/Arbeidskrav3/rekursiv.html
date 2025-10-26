@@ -16,11 +16,31 @@
             Hva er en rekursiv funksjon?
 
             --Ditt svar her. Husk kilder--
+            Rekursiv funksjon er en funksjon som kaller på seg selv for å løse et problem. Den må
+            ha en "base case", altså vite når den skal stoppe, ellers vil den kjøre uendelig.. (Programiz, n.d.)
+            Se referanseliste i vedlegget for lenke til brukt kilde.
         */
+        
+        randomTall = Math.floor(Math.random() * 9) + 1
 
-        function numberSelector() {
+        function numberSelector(randomTall) {
             // Din kode her
+
+            document.getElementById("numberList").innerHTML += randomTall + ", "
+    
+            if(randomTall > 1 && randomTall !== 4 && randomTall !== 7){
+            //denne if setningen er base-casen, altså det som "stopper" funksjonen slik at den ikke kjører uendelig
+                
+                randomTall = randomTall - 1
+
+                numberSelector(randomTall)
+                
+            }else if(randomTall === 4 && randomTall === 7){
+                    return;
+                }
         }
+        
+        numberSelector(randomTall)
     </script>
 </body>
 </html>
