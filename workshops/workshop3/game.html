@@ -13,6 +13,12 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 </head>
+
+<style>
+    #drawing-area{
+        background-image: url(background.jpg);
+    }
+</style>
 <body>
     <header>
         <section id="player">
@@ -73,6 +79,9 @@
             </div>
         </section>
     </main>
+
+    <canvas id="drawing-area"></canvas>
+
     <script>
         //PREPARE GAME CONFIG AND VARIABLES
         //TODO: config
@@ -166,6 +175,35 @@
         updateConfigValue("energy", -3)
         updateConfigValue("duration", 100)
         updateConfigValue("loops", 1000)
+
+        //WS3 Oppg1
+        
+        const canvas = document.getElementById("drawing-area")
+
+        canvas.width = 800
+        canvas.height = 600
+
+        const ctx = canvas.getContext("2d")
+
+        ctx.beginPath()
+        ctx.fillStyle = "#ffffff"
+        ctx.fillRect(650, 570, 200, 30)
+        
+        ctx.fillStyle = "#3c429b"
+        ctx.font = "15px Arial"
+        ctx.fillText("Press P to unpause", 660, 590)
+        ctx.closePath()
+
+        const heroImage = new Image()
+        let loadedImage = false
+
+        heroImage.onload = () => { loadedImage = true }
+
+        console.log(loadedImage)
+
+        heroImage.src = "icons/fortran.png"
+
+        loadedImage ? ctx.drawImage(heroImage, canvas.width / 2, canvas.height / 2) : null
 
     </script>
 </body>
