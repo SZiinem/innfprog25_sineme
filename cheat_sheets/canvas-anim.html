@@ -20,12 +20,22 @@
         canvas.width = 800
         canvas.height = 600
 
+        const speed = 10
+
+
         const ball = {
             x: canvas.width / 2,
             y: canvas.height / 2,
             radius: 20,
-            speedX: 10,
-            speedY: 10
+            speedX: -speed,
+            speedY: speed
+        }
+
+        const paddle1 = {
+            x: 100,
+            y: 100,
+            w: 100,
+            h: 100
         }
 
         requestAnimationFrame = 
@@ -35,37 +45,59 @@
         window.mozRequestAnimationFrame
 
         //funksjon for å tegne element
-        function drawBall(){
+        function draw(){
+
             //Kollisjonsdeteksjon
-            //sjekk hvis ball.y er større enn canvas.height
-            if(ball.y + ball.radius > canvas.height){
-                ball.speedY = -ball.speedY
-            }
-            if(ball.x + ball.radius > canvas.width){
-                ball.speedX = -ball.speedX
-            }
-            if(ball.y <= 0 + ball.radius){
-                ball.speedY = ball.speedY * -1
-            }
-            if(ball.x <= 0 + ball.radius){
-                ball.speedX = ball.speedX * -1
+            //Vegger og tak
+            ball.x + ball.radius >= canvas.width ? ball.speedX = ball.speedX * -1 : null
+            ball.x - ball.radius <= 0 ? ball.speedX = ball.speedX * -1 : null
+
+            ball.y + ball.radius >= canvas.height ? ball.speedY = ball.speedY * -1 : null
+            ball.y - ball.radius <= 0 ? ball.speedY = ball.speedY * -1 : null
+
+            //andre elementer
+            // if(ball.x <= paddle1.x && ball.y >= paddle1.y && ball.y <= paddle1.y){
+            //     ball.speedX *= -1
+            // }
+
+            if(ball.x <= paddle1.x + paddle1.w && ball.y <= paddle1.y + paddle1.h){
+                ball.speedX *= -1
             }
 
-            //oppdatering av posisjoner
+            if(ball.x <= paddle1.x && ball.y <= paddle1.y + paddle1.h){
+                ball.speedX *= -1
+            }
+
+            if(ball.y <= paddle1.y + paddle1.h && ball.x <= paddle1.x + paddle1.w){
+                ball.speedY *= -1
+            }
+
+            if(ball.y <= paddle1.y && ball.x <= paddle1.x + paddle1.w){
+                ball.speedY *= -1
+            }
+
+            //oppdaterer posisjon på ball
             ball.x += ball.speedX
             ball.y += ball.speedY
-           
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height) //tegner fra 0 til canvas.width (fjerner)
+
+            //Tegn ballen
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
             ctx.beginPath()
             ctx.fillStyle = "#003366"
             ctx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI)
             ctx.fill()
             ctx.closePath()
 
-            requestAnimationFrame(drawBall)
+            ctx.beginPath()
+            ctx.rect(paddle1.x, paddle1.y, paddle1.w, paddle1.h)
+            ctx.fill()
+            ctx.closePath()
+
+            requestAnimationFrame(draw)
         }
-        drawBall()
+
+        draw()
 
         // setInterval(() => {
         //     ball.x += 1
