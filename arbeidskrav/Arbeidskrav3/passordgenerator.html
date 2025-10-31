@@ -8,7 +8,32 @@
 <body>
     <h1>Passordgenerator</h1>
     <!-- Felter for brukervalg her -->
-
+    <label>
+        Hvor langt skal passordet være? Skriv inn kun tall.
+        <input type="number" value="0" name="lengde" id="lengde"/> 
+    </label>
+    <hr>
+    <label>
+        Skal det inkludere store bokstaver?
+        <input type="checkbox" id="storebokstaver" name="storebokstaver" value="storebokstaver"/>
+    </label>
+    <hr>
+    <label>
+        Skal det inkludere små bokstaver?
+        <input type="checkbox" id="småbokstaver" name="småbokstaver" value="småbokstaver"/>
+    </label>
+    <hr>
+    <label>
+        Skal det inkludere nummer?
+        <input type="checkbox" id="nummer" name="nummer" value="nummer"/>
+    </label>
+    <hr>
+    <label>
+        Skal det inkludere spesialtegn?
+        <input type="checkbox" id="spesialtegn" name="spesialtegn" value="spesialtegn"/>
+    </label>
+    <hr>
+    <button id="generatePassword" onclick="passwordgenerator()">Generer passord</button>
 
      <p>Ditt passord: <span id="generatedPassword"></span></p>
 
@@ -20,6 +45,37 @@
 
         function passwordgenerator(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols) {
             /* Din kode her */
+            let lengde = document.getElementById("lengde").value
+
+            let checkUppercase = document.getElementById("storebokstaver")
+            let checkLowercase = document.getElementById("småbokstaver")
+            let checkNumbers = document.getElementById("nummer")
+            let checkSymbols = document.getElementById("spesialtegn")
+            
+            let chars = "";
+
+            if(storebokstaver.checked == true){
+                chars += uppercase
+            }
+            if(småbokstaver.checked == true){
+                chars += lowercase
+            }
+            if(nummer.checked == true){
+                chars += numbers
+            }
+            if(spesialtegn.checked == true){
+                chars += symbols
+            }
+            console.log("karakterer", chars)
+
+
+            let passord = ""
+
+            while(lengde > passord.length){
+                passord += chars[Math.floor(Math.random() * chars.length)]
+            }
+            document.getElementById("generatedPassword").innerHTML = passord
+
         }
      </script>
 </body>

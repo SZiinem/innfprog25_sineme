@@ -1,0 +1,29 @@
+<body>
+  <h1>Rekursiv utskrift av tall</h1>
+  <ul id="numberList">
+    <li>Tall vil skrives ut her.</li>
+  </ul>
+
+  <script>
+    function numberSelector() {
+      // Velg et tilfeldig tall mellom 1 og 9
+      let tall = Math.floor(Math.random() * 9) + 1;
+
+      // Finn lista
+      const list = document.getElementById("numberList");
+
+      // Legg til tallet som et nytt listeelement
+      const li = document.createElement("li");
+      li.textContent = tall;
+      list.appendChild(li);
+
+      // Hvis tallet IKKE er 4 eller 7, kall funksjonen igjen
+      if (tall !== 4 && tall !== 7) {
+        numberSelector(); // rekursivt kall
+      }
+    }
+
+    // Start funksjonen når siden lastes
+    numberSelector();
+  </script>
+</body>
