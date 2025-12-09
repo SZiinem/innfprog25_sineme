@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Admin</title>
+</head>
+<body>
+    <header id="global-header">
+        <h1>Høgskolen JS</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Legg til ansatt</h2>
+        </section>
+        <section class="flexLeggTilAnsatt">
+            <label>
+                <p>Fornavn:</p>
+                <input type="text" value="" name="fornavn" id="fornavn"/>
+            </label>
+            <label>
+                <p>Etternavn:</p>
+                <input type="text" value="" name="etternavn" id="etternavn"/>
+            </label>
+            <label>
+                <p>Epost:</p>
+                <input type="email" value="" name="epost" id="epost"/>
+            </label>
+            <label>
+                <p>Kontor:</p>
+                <input type="text" value="" name="kontor" id="kontor"/>
+            </label>
+            <label>
+                <p>Stilling:</p>
+                <select id="stilling">
+                    <option value="0">Rektor</option>
+                    <option value="1">Dekan</option>
+                    <option value="2">Vaktmester</option>
+                    <option value="3">Professor</option>
+                    <option value="4">Lektor</option>
+                </select>
+            </label>
+            <label>
+                <p>Kurs:</p>
+                <input type="text" value="" name="kurs" id="kurs"/>
+            </label>
+            <button id="leggTilAnsatt">Legg til ansatt</button>
+        </section>
+
+         <section id="ansatte">
+            <h2>Ansatte</h2>
+            <section id="utskrift">
+            </section>
+        </section>
+    </main>
+
+    <script src="../oppgave1/register.js"></script>
+    <script src="../oppgave1/actions.js"></script>
+
+    <script>
+        //skrive ut alle ansatte
+        function visAlleAnsatteAdminHTML(){
+            return ansatte.map((_, index) => visAnsattAdminHTML(index)).join("\n");
+        }
+
+        const alleAnsatte = document.getElementById("utskrift");
+        alleAnsatte.innerHTML = visAlleAnsatteAdminHTML();
+        aktivereKnappene();
+
+
+        const btn = document.getElementById("leggTilAnsatt");
+        btn.addEventListener("click", () => {
+            leggTilUnderviser();                     
+            utskrift.innerHTML = visAlleAnsatteAdminHTML(); 
+            aktivereKnappene();  // legger eventListener på alle slett-knapper
+        });
+        console.log(alleAnsatte)
+
+
+        //slette en ansatt
+        function visAnsattAdminHTML(index){
+
+            const ansatt = ansatte[index];
+            if (!ansatt) return "<p>Ansatt ikke funnet</p>";
+
+            const stillingNavn = stillinger[ansatt.stilling];
+            const kursHTML = ansatt.kursansvar.length 
+                ? `${ansatt.kursansvar.map(k => `${k}`).join(", ")}` 
+                : "Ingen kursansvar.";
+
+            return `
+                <article class="ansattAdmin">
+                    <h3>${ansatt.navn}</h3>
+                    <p><strong>Stilling:</strong> ${stillingNavn}</p>
+                    <p><strong>Kontor:</strong> ${ansatt.kontor}</p>
+                    <p><strong>E-post:</strong> ${ansatt.epost}</p>
+                    <p><strong>Kursansvar:</strong> ${kursHTML}</p>
+                    <!--Gir unik id til hver knapp med index-->
+                    <button id="slett_${index}" class="btn">Slett ansatt</button>
+                </article>
+            `;
+        };
+
+        function aktivereKnappene() {
+            for (let i = 0; i < ansatte.length; i++) {
+            const knappSlettAnsatt = document.getElementById("slett_" + i);
+            if(knappSlettAnsatt){
+                knappSlettAnsatt.addEventListener("click", () => {
+                    slettAnsatt(i);
+                })
+            }
+        }
+    }
+    </script>
+
+    <!--https://www.youtube.com/watch?v=NxVCq4p0Kb0-->
+</body>
+</html>

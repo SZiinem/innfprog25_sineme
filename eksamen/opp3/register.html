@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Registeret</title>
+</head>
+<body>
+    <header id="global-header">
+        <h1>Høgskolen JS</h1>
+    </header>
+
+    <main>
+        <section class="knapper">
+            <button id="knappAlleAnsatte" class="btn">Vis Alle Ansatte</button>
+            <button id="knappAlleUndervisere" class="btn">Vis undervisere</button>
+            <button id="knappAlleAdministrasjon" class="btn">Vis administasjon</button>
+        </section>
+        <section class="flex">
+            <p>Vis kun stilling:</p>
+            <section class="knapper">
+                <button id="knappProfessor" class="btn">Professor</button>
+                <button id="knappDekan" class="btn">Dekan</button>
+                <button id="knappRektor" class="btn">Rektor</button>
+                <button id="knappVaktmester" class="btn">Vaktmester</button>
+                <button id="knappLektor" class="btn">Lektor</button>
+            </section>
+        </section>
+
+        <section id="ansatte">
+            <h2>Ansatte</h2>
+            <section id="utskrift"></section>
+        </section>
+
+        <section id="kurs">
+            <h2>Kursoversikt</h2>
+            <p id="kursene"></p>
+        </section>
+    </main>
+
+    <script src="../oppg1/register.js"></script>
+    <script src="../oppg1/actions.js"></script>
+
+    <script>
+        //skrive ut alle ansatte
+        const alleAnsatte = document.getElementById("utskrift");
+        alleAnsatte.innerHTML = visAlleAnsatteHTML();
+
+        //felles utskrift
+        const utskrift = document.getElementById("utskrift");
+
+        //skrive ut alle kurs
+        const AlleKurs = document.getElementById("kursene")
+        AlleKurs.innerHTML = hentAlleKurs()
+            .map(kurs => { return `<li>${kurs}</li>`
+            }).join("");
+
+
+        //---! KNAPPENE !---
+
+        //knapp: Vis alle ansatte
+        const knappVisAlleAnsatte = document.getElementById("knappAlleAnsatte")
+        knappVisAlleAnsatte.addEventListener("click", () => {
+            utskrift.innerHTML = visAlleAnsatteHTML(); 
+            console.log(utskrift)
+        });
+
+        // //knapp: vis undervisere
+        const knappVisAlleUndervisere = document.getElementById("knappAlleUndervisere")
+        knappVisAlleUndervisere.addEventListener("click", () => {
+            const undervisere = hentUndervisere();
+
+            utskrift.innerHTML = undervisere
+                .map(ansatt => visAnsattHTML(ansatte.indexOf(ansatt))).join("");
+        })
+
+        //knapp: Vis alle i administrasjonen
+        const knappVisAlleAdministrasjon = document.getElementById("knappAlleAdministrasjon")
+        knappVisAlleAdministrasjon.addEventListener("click", () => {
+            const administrasjon = hentAdministrasjon();
+
+            utskrift.innerHTML = administrasjon
+                .map(ansatt => visAnsattHTML(ansatte.indexOf(ansatt))).join("");
+        });
+
+        //knapp: Vis professorene
+        const knappVisProfessor = document.getElementById("knappProfessor")
+        knappVisProfessor.addEventListener("click", () => {
+            const professor = filtrerAnsatteEtterStilling(3);
+
+            utskrift.innerHTML = professor
+                .map(ansatt => visAnsattHTML(ansatte.indexOf(ansatt))).join("");
+        })
+
+        //knapp: Vis rektor
+        const knappVisRektor = document.getElementById("knappRektor")
+        knappVisRektor.addEventListener("click", () => {
+            const rektor = filtrerAnsatteEtterStilling(0);
+
+            utskrift.innerHTML = rektor
+                .map(ansatt => visAnsattHTML(ansatte.indexOf(ansatt))).join("");
+        })
+
+        //knapp: Vis alle dekanene
+        const knappVisDekan = document.getElementById("knappDekan")
+        knappVisDekan.addEventListener("click", () => {
+            const dekan = filtrerAnsatteEtterStilling(1);
+
+            utskrift.innerHTML = dekan
+                .map(ansatt => visAnsattHTML(ansatte.indexOf(ansatt))).join("");
+        })
+
+        //knapp: Vis alle vaktmesterne
+        const knappVisVaktmester = document.getElementById("knappVaktmester")
+        knappVisVaktmester.addEventListener("click", () => {
+            const vaktmester = filtrerAnsatteEtterStilling(2);
+
+            utskrift.innerHTML = vaktmester
+                .map(ansatt => visAnsattHTML(ansatte.indexOf(ansatt))).join("");
+        })
+
+        //knapp: Vis alle lektorene
+        const knappVisLektor = document.getElementById("knappLektor")
+        knappVisLektor.addEventListener("click", () => {
+            const lektor = filtrerAnsatteEtterStilling(4);
+
+            utskrift.innerHTML = lektor
+                .map(ansatt => visAnsattHTML(ansatte.indexOf(ansatt))).join("");
+        })
+    </script>
+</body>
+</html>
